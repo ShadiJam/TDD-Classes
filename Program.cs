@@ -26,29 +26,36 @@ public class Vehicle
     }
 
 }
+public interface IAutopilotable {
+    string Name { get; set; } = "vehicle";
+    bool hasAutopilot{
+        get { return false; }
+        set { }
+    }
+}
 
-
-class ElectricCar : Vehicle {
+public class ElectricCar : Vehicle {
     public ElectricCar(string make = "dodge", string model = "ram") : base(make, model){}
     public override int NumOfGears {get; set;} = 1;
     public override string Name {get; set;} = "electric car";
 }
 
-class Tesla : ElectricCar {
+public class Tesla : ElectricCar : IAutopilotable {
     public Tesla(string make = "dodge", string model = "ram") : base(make, model){}
-    interface IAutopilotable<T> (hasAutopilot, bool) {
-    return true;
-}
     public override string Name {get; set;} = "tesla";
+    bool hasAutopilot {
+        get { }
+        set { return true; }
+    }
 }
 
-class Motorcycle : Vehicle {
+public class Motorcycle : Vehicle {
     public Motorcycle(string make = "dodge", string model = "ram") : base(make, model){}
     public override int NumOfTires {get; set;} = 2;
     public override string Name {get; set;} = "motorcycle";
 }
 
-class Trike : Motorcycle {
+public class Trike : Motorcycle {
     public Trike(string make = "dodge", string model = "ram") : base(make, model){}
     public override int NumOfTires {get; set; } = 3;
     public override int NumOfGears {get; set; } = 2;
